@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.blackboard.com/bb-manifest-plugin"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://www.blackboard.com/bb-manifest-plugin http://fibbba.medu.com/xsd/bb-manifest-plugin.xsd">
+  <plugin>
+
+    <name value="amib2lti" />
+    <handle value="amib2lti" />
+    <webapp-type value="javaext" />
+    <description value="migrate b2 content to lti" />
+    <default-locale value="en_US" />
+
+    <version value="2022.02.070" />
+    <requires>
+      <bbversion value="3900.13.0" />
+    </requires>
+
+    <vendor>
+      <id value="bbdn" />
+      <name value="Blackboard Inc." />
+      <url value="http://www.blackboard.com/" />
+      <description value="Blackboard Learn" />
+    </vendor>
+
+      <!-- Custom content types defined by this extension -->
+      <content-handlers>
+
+      <!--content-handler>
+         <name value="InsertItemLink"/>
+         <handle value= "resource/amib2lti-itemlink"/>
+         <http-actions>
+            <create value="/insertItemLink/create"/>
+            <view value="/insertItemLink/view"/>
+         </http-actions>
+         <icons>
+             <toolbar value="images/fast-forward.blue.gif"/>
+             <listitem value="images/fast-forward.blue.gif"/>
+         </icons>
+          <types>
+            <type>
+                <action-type value="mashup"/>
+            </type>
+          </types>
+      </content-handler -->
+
+        <content-handler>
+           <name value="InsertExternalLink"/>
+           <handle value= "resource/amib2lti-extlink"/>
+           <http-actions>
+              <create value="linkjsp/insertExternalLink.jsp"/>
+           </http-actions>
+           <icons>
+               <toolbar value="images/fast-forward.red.gif"/>
+               <listitem value="images/fast-forward.red.gif"/>
+           </icons>
+            <types>
+              <type>
+                  <action-type value="mashup"/>
+              </type>
+            </types>
+        </content-handler>
+
+      </content-handlers>
+
+      <extension-defs>
+            <!-- course copy -->
+            <definition namespace="blackboard.platform">
+                <extension id="bblogback-course-copy" point="blackboard.platform.cxComponent" class="com.blackboard.amib2lti.CourseCopyHandler" singleton="true"/>
+            </definition>
+      </extension-defs>
+
+    <schema-dirs>
+      <schema-dir dir-name="bblogback" />
+    </schema-dirs>
+
+    <application-defs>
+	    <application  handle="bb-logbackb2"
+  	      type="shared"  name="Bb Logback B2"
+  	      small-icon="" large-icon="">
+	    <description lang="en_US">
+ 		  Bb Logback B2
+  		</description>
+       <links>
+          <link>
+	          <type value="system_tool"/>
+	           <name value="system_tool link"/>
+		       <url value="https://www.microsoft.com"/>
+	         <description value="B2 System Tool Link"/>
+          </link>
+          <link>
+              <type value="tool" />
+              <name value="Logback Content JSP" />
+              <url value="linkjsp/Content.jsp" />
+              <description value="Logback Content JSP" />
+          </link>
+
+          <link>
+	        <type value="logback tool"/>
+	        <name value="logback tool link"/>
+		<url value="https://www.microsoft.com"/>
+	        <description value="Logback B2 Tool Link"/>
+          </link>
+
+            <link>
+	        <type value="user_tool"/>
+	        <name value="user_tool link"/>
+		<url value="https://www.microsoft.com"/>
+	        <description value="B2 User Tool Link"/>
+	</link>
+
+       </links>
+
+      </application>
+
+    </application-defs>
+    <permissions>
+      <permission type="persist" name="*" actions="create,modify,delete,persist" />
+      <permission type="attribute" name="user.*" actions="get,set" />
+      <permission type="java.util.PropertyPermission" name="*" actions="read,write" />
+      <permission type="socket" name="*" actions="connect" />
+
+      <!-- We need these permissions to allow Spring to auto-discover and wire beans together and Hibernate to interact with objects. -->
+      <permission type="java.lang.reflect.ReflectPermission" name="suppressAccessChecks" />
+      <permission type="java.lang.RuntimePermission" name="accessDeclaredMembers" />
+      <permission type="java.lang.RuntimePermission" name="createClassLoader" />
+      <permission type="java.lang.RuntimePermission" name="setContextClassLoader" />
+
+      <!-- File Permissions -->
+      <permission type="java.io.FilePermission" name="${java.home}/-" actions="read"/>
+      <permission type="java.io.FilePermission" name="BB_HOME/-" actions="read,write,delete"/>
+      <permission type="java.io.FilePermission" name="BB_CONTENT/-" actions="read,write,delete"/>
+
+
+      <!-- The following are extreemly promiscuous permissions. Use the above instead. -->
+      <!-- permission type="java.io.FilePermission" actions="read,write" name="&amp;lt;&amp;lt;ALL FILES&amp;gt;&amp;gt;" / -->
+
+     <permission type="java.security.SecurityPermission" name="*" actions="insertProvider.SunJSSE" />
+
+
+    </permissions>
+
+  </plugin>
+</manifest>

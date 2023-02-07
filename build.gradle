@@ -1,0 +1,151 @@
+buildscript {
+    repositories {
+	gradlePluginPortal()
+	mavenCentral()
+        jcenter()
+    }
+
+
+    dependencies {
+        classpath 'com.bmuschko:gradle-tomcat-plugin:2.7.0'
+    }
+}
+
+apply plugin: 'com.bmuschko.tomcat'
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'maven-publish'
+
+// define the version for the project when publishing to maven
+group "blackboard.plugin"
+version "2022.02.070-SNAPSHOT"
+
+project.ext {
+  learnVersion = "3900.54.0"
+  springVersion = "5.3.25"
+//  hibernateVersion = "4.1.10.Final"
+}
+
+description = """amib2lti"""
+
+// sourceCompatibility = 1.6
+// targetCompatibility = 1.6
+
+def logbackVersion      = '1.0.13'
+def logbackClassic      = "ch.qos.logback:logback-classic:${logbackVersion}"
+def logbackCore         =  "ch.qos.logback:logback-core:${logbackVersion}"
+
+def slf4jVersion = '1.6.6'
+def slf4jAPI     = "org.slf4j:slf4j-api:${slf4jVersion}"
+def slf4jJCL     = "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
+// mbk - We no longer user slf4jLog4J. References have been commented out.
+// We're using logback. Having both in here caused a multiple bindings warning.
+// On Learn 3000. and earlier the logback logger was choosen by the runtime.
+// But on 3100 and later it wasn't and we didn't get in a logs, because
+// this code does all logging using logback!
+def slf4jLog4J   = "org.slf4j:slf4j-log4j12:${slf4jVersion}"
+
+repositories {
+
+     maven { url "https://repo.maven.apache.org/maven2" }
+     maven { url "https://maven.blackboard.com/content/repositories/releases/" }
+     mavenCentral()
+}
+
+// for the b2deploy task defined later.
+configurations {
+  buildUtils
+}
+
+// Configure so that at run-time the compiled jsp java is used.
+tomcat {
+    jasper {
+        validateTld = false
+	webXmlFragment = file("$webAppDir/WEB-INF/generated_web.xml")
+	addWebXmlMappings = true
+    }
+}
+
+dependencies {
+    // Pre-compile jsp Dependencies. tomcatVersion 8.5.4 is not available as of this writing
+    def tomcatVersion = '8.5.0'
+    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+        "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
+        "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}",
+        "blackboard.platform:bb-taglibs:$project.ext.learnVersion",
+        "blackboard.platform:bb-platform:$project.ext.learnVersion",
+        "blackboard.platform:bb-bbxythos:$project.ext.learnVersion",
+        "javax.servlet:jstl:1.2"
+
+    providedCompile "javax.servlet:servlet-api:2.5"
+
+    // Blackboard Dependencies
+    // providedCompile dependencies are libraries needed to build, but should not be included in the B2 WAR.
+    // You should NEVER include Learn JARs (other than webapis) in your B2.
+    providedCompile( "blackboard.platform:bb-platform:$project.ext.learnVersion" ) { transitive = false }
+    providedCompile( "blackboard.platform:bb-bbxythos:$project.ext.learnVersion" ) { transitive = false }
+    providedCompile( "blackboard.platform:bb-taglibs:$project.ext.learnVersion" ) { transitive = false }
+
+    // Spring Dependencies
+    implementation(group: 'org.springframework', name: 'spring-context', version:'5.3.25') {
+exclude(module: 'commons-logging')
+    implementation group: 'com.google.guava', name: 'guava', version: '15.0'
+    }
+
+    implementation(logbackClassic)
+    implementation(logbackCore)
+
+    implementation(slf4jAPI)
+    implementation(slf4jJCL)
+    // implementation(slf4jLog4J)
+
+    implementation group: 'org.springframework', name: 'spring-webmvc', version:'5.3.25'
+    implementation group: 'org.aspectj', name: 'aspectjrt', version:'1.6.10'
+    // implementation group: 'org.slf4j', name: 'slf4j-api', version:'1.6.6'
+    implementation group: 'javax.inject', name: 'javax.inject', version:'1'
+    implementation group: 'javax.servlet', name: 'jstl', version:'1.2'
+
+    // runtimeOnly group: 'org.slf4j', name: 'jcl-over-slf4j', version:'1.6.6'
+    // runtimeOnly group: 'org.slf4j', name: 'slf4j-log4j12', version:'1.6.6'
+    // runtimeOnly(group: 'log4j', name: 'log4j', version:'1.2.15') {
+    //    exclude(module: 'mail')
+    //    exclude(module: 'jms')
+    //    exclude(module: 'jmxtools')
+    //    exclude(module: 'jmxri')
+    // }
+    testImplementation group: 'junit', name: 'junit', version:'4.7'
+    providedCompile group: 'javax.servlet', name: 'servlet-api', version:'2.5'
+    providedCompile group: 'javax.servlet.jsp', name: 'jsp-api', version:'2.1'
+
+    // A couple more Blackboard items...
+    runtimeOnly "org.javassist:javassist:3.17.1-GA", "dom4j:dom4j:1.6.1"
+    buildUtils "org.oscelot:b2deploy-task:0.1.0"
+
+} // END dependencies
+
+
+// Add a task to deploy a B2 using starting block
+task deployB2( dependsOn: "war" ) doLast {
+      ant.taskdef( name: "b2deploy", classname: "org.oscelot.ant.B2DeployTask", classpath: project.configurations.buildUtils.asPath )
+      ant.b2deploy( localfilepath: project.war.archivePath, host: System.getProperty("server"), courseorgavailable: 'true', clean: 'true' )
+}
+
+// This task runs the build script that compiles jsp pages on build.
+task compileJsps(type: JavaCompile) {
+  group = 'build'
+  description = 'Translates and compiles JSPs'
+  classpath = configurations.tomcat + sourceSets.main.output + sourceSets.main.runtimeClasspath
+  sourceCompatibility = '1.8'
+  targetCompatibility = '1.8'
+  destinationDir = file("src/main/webapp/WEB-INF/classes")
+  source = file("build/jasper/org/apache/jsp")
+  dependsOn classes
+  dependsOn tomcatJasper
+}
+
+task wrapit(type: Wrapper) {
+  gradleVersion = '7.6'
+}
+
+// To build our war we use the compileJsps task
+war.dependsOn compileJsps
