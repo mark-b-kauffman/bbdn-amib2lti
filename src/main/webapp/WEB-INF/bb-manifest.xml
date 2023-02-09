@@ -10,7 +10,7 @@
     <description value="migrate b2 content to lti" />
     <default-locale value="en_US" />
 
-    <version value="2022.02.0801" />
+    <version value="2022.02.082" />
     <requires>
       <bbversion value="3900.54.0" />
     </requires>
@@ -44,7 +44,7 @@
       </content-handler -->
 
         <content-handler>
-           <name value="InsertExternalLink"/>
+           <name value="Amib2InsertExternalLink"/>
            <handle value= "resource/amib2lti-extlink"/>
            <http-actions>
               <create value="linkjsp/insertExternalLink.jsp"/>
@@ -65,17 +65,17 @@
       <extension-defs>
             <!-- course copy -->
             <definition namespace="blackboard.platform">
-                <extension id="bblogback-course-copy" point="blackboard.platform.cxComponent" class="com.blackboard.amib2lti.CourseCopyHandler" singleton="true"/>
+                <extension id="amib2lti-course-copy" point="blackboard.platform.cxComponent" class="com.blackboard.amib2lti.CourseCopyHandler" singleton="true"/>
             </definition>
       </extension-defs>
 
     <schema-dirs>
-      <schema-dir dir-name="bblogback" />
+      <schema-dir dir-name="amib2lti" />
     </schema-dirs>
 
     <application-defs>
-	    <application  handle="bb-logbackb2"
-  	      type="shared"  name="Bb Logback B2"
+	    <application  handle="bbdn-amib2lti"
+  	      type="shared"  name="amib2lti B2"
   	      small-icon="" large-icon="">
 	    <description lang="en_US">
  		  Bb Logback B2
@@ -83,29 +83,29 @@
        <links>
           <link>
 	          <type value="system_tool"/>
-	           <name value="system_tool link"/>
+	           <name value="amib2lti system_tool"/>
 		       <url value="https://www.microsoft.com"/>
-	         <description value="B2 System Tool Link"/>
+	         <description value="amib2lti B2 System Tool Link"/>
           </link>
           <link>
               <type value="tool" />
-              <name value="Logback Content JSP" />
+              <name value="Amib2lti Content JSP" />
               <url value="linkjsp/Content.jsp" />
-              <description value="Logback Content JSP" />
+              <description value="Amib2lti Content JSP" />
           </link>
 
           <link>
-	        <type value="logback tool"/>
-	        <name value="logback tool link"/>
+	        <type value="amib2lti tool"/>
+	        <name value="amib2lti tool link"/>
 		<url value="https://www.microsoft.com"/>
-	        <description value="Logback B2 Tool Link"/>
+	        <description value="Amib2 Tool Link"/>
           </link>
 
             <link>
 	        <type value="user_tool"/>
-	        <name value="user_tool link"/>
+	        <name value="amib2 user_tool link"/>
 		<url value="https://www.microsoft.com"/>
-	        <description value="B2 User Tool Link"/>
+	        <description value="amib2 User Tool Link"/>
 	</link>
 
        </links>
