@@ -10,7 +10,7 @@
     <description value="migrate b2 content to lti" />
     <default-locale value="en_US" />
 
-    <version value="2022.02.070" />
+    <version value="2022.02.080" />
     <requires>
       <bbversion value="3900.13.0" />
     </requires>
