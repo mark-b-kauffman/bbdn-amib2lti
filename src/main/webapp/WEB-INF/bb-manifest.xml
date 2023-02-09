@@ -10,16 +10,16 @@
     <description value="migrate b2 content to lti" />
     <default-locale value="en_US" />
 
-    <version value="2022.02.080" />
+    <version value="2022.02.0801" />
     <requires>
-      <bbversion value="3900.13.0" />
+      <bbversion value="3900.54.0" />
     </requires>
 
     <vendor>
       <id value="bbdn" />
-      <name value="Blackboard Inc." />
-      <url value="http://www.blackboard.com/" />
-      <description value="Blackboard Learn" />
+      <name value="Blackboard Developer Network" />
+      <url value="http://docs.anthology.com/" />
+      <description value="Blackboard Developer Network" />
     </vendor>
 
       <!-- Custom content types defined by this extension -->
