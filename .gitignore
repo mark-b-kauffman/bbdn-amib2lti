@@ -12,3 +12,5 @@ private
 private/
 target/
 WebContent/
+.vscode
+.vscode/
