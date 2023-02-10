@@ -28,6 +28,11 @@
 	<!-- JSPC servlet mappings start -->
 
     <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.admin_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.admin_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
         <servlet-name>org.apache.jsp.WEB_002dINF.views.logbacklog_jsp</servlet-name>
         <servlet-class>org.apache.jsp.WEB_002dINF.views.logbacklog_jsp</servlet-class>
     </servlet>
@@ -86,6 +91,11 @@
         <servlet-name>org.apache.jsp.linkjsp.Content_jsp</servlet-name>
         <servlet-class>org.apache.jsp.linkjsp.Content_jsp</servlet-class>
     </servlet>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.admin_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/admin.jsp</url-pattern>
+    </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>org.apache.jsp.WEB_002dINF.views.logbacklog_jsp</servlet-name>

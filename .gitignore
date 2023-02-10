@@ -10,6 +10,8 @@ build
 build/
 private
 private/
+src/main/webapp/WEB-INF/classes/org/apache/jsp
+src/main/webapp/WEB-INF/classes/org/apache/jsp/
 target/
 WebContent/
 .vscode

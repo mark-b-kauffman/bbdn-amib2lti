@@ -136,8 +136,25 @@ public class HomeController {
 		return "learnhello";
 	}
 
+  @RequestMapping(value = "/admin", method = RequestMethod.GET)
+	public String admin(Locale locale, Model model) {
+		// MyLogger.info("Using Learn Logger! The client locale is {}.", locale);
+		logger.info("Welcome to /admin! The client locale is {}.", locale);
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 
-        @RequestMapping(value = "/logbacklog", method = RequestMethod.GET)
+		String formattedDate = dateFormat.format(date);
+
+		model.addAttribute("serverTime", formattedDate );
+
+    MybbLOGGER.getBbLogger().logInfo(formattedDate + "  Info from logbacklog" );
+    MybbLOGGER.getBbLogger().logError(formattedDate + "  Error from logbacklog, not a real Error" );
+    MybbLOGGER.getBbLogger().logDebug(formattedDate + "  Debug from logbacklog" );
+
+		return "admin";
+	}
+
+  @RequestMapping(value = "/logbacklog", method = RequestMethod.GET)
 	public String logbacklog(Locale locale, Model model) {
 		// MyLogger.info("Using Learn Logger! The client locale is {}.", locale);
 		logger.info("Welcome to /logbacklog! The client locale is {}.", locale);

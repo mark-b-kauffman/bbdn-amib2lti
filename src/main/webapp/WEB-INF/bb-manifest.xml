@@ -10,7 +10,7 @@
     <description value="migrate b2 content to lti" />
     <default-locale value="en_US" />
 
-    <version value="2022.02.082" />
+    <version value="2022.02.092" />
     <requires>
       <bbversion value="3900.54.0" />
     </requires>
@@ -22,27 +22,12 @@
       <description value="Blackboard Developer Network" />
     </vendor>
 
-      <!-- Custom content types defined by this extension -->
-      <content-handlers>
+      <http-actions>
+              <config value="admin"/>
+      </http-actions>
 
-      <!--content-handler>
-         <name value="InsertItemLink"/>
-         <handle value= "resource/amib2lti-itemlink"/>
-         <http-actions>
-            <create value="/insertItemLink/create"/>
-            <view value="/insertItemLink/view"/>
-         </http-actions>
-         <icons>
-             <toolbar value="images/fast-forward.blue.gif"/>
-             <listitem value="images/fast-forward.blue.gif"/>
-         </icons>
-          <types>
-            <type>
-                <action-type value="mashup"/>
-            </type>
-          </types>
-      </content-handler -->
-
+      <!-- NO Custom content types defined by this extension -->
+      <!--content-handlers>
         <content-handler>
            <name value="Amib2InsertExternalLink"/>
            <handle value= "resource/amib2lti-extlink"/>
@@ -59,15 +44,13 @@
               </type>
             </types>
         </content-handler>
+      </content-handlers -->
 
-      </content-handlers>
-
-      <extension-defs>
-            <!-- course copy -->
+      <!-- NO extension-defs>
             <definition namespace="blackboard.platform">
                 <extension id="amib2lti-course-copy" point="blackboard.platform.cxComponent" class="com.blackboard.amib2lti.CourseCopyHandler" singleton="true"/>
             </definition>
-      </extension-defs>
+      </extension-defs -->
 
     <schema-dirs>
       <schema-dir dir-name="amib2lti" />
@@ -78,35 +61,22 @@
   	      type="shared"  name="amib2lti B2"
   	      small-icon="" large-icon="">
 	    <description lang="en_US">
- 		  Bb Logback B2
+ 		  A Migrate B2 Content to LTI (amib2lti)
   		</description>
        <links>
           <link>
 	          <type value="system_tool"/>
 	           <name value="amib2lti system_tool"/>
-		       <url value="https://www.microsoft.com"/>
+		       <url value="/bbproperties"/>
 	         <description value="amib2lti B2 System Tool Link"/>
           </link>
-          <link>
-              <type value="tool" />
-              <name value="Amib2lti Content JSP" />
-              <url value="linkjsp/Content.jsp" />
-              <description value="Amib2lti Content JSP" />
-          </link>
 
           <link>
-	        <type value="amib2lti tool"/>
-	        <name value="amib2lti tool link"/>
-		<url value="https://www.microsoft.com"/>
+	        <type value="course_tool"/>
+	        <name value="amib2lti course_tool"/>
+		        <url value="/learnhello"/>
 	        <description value="Amib2 Tool Link"/>
           </link>
-
-            <link>
-	        <type value="user_tool"/>
-	        <name value="amib2 user_tool link"/>
-		<url value="https://www.microsoft.com"/>
-	        <description value="amib2 User Tool Link"/>
-	</link>
 
        </links>
 
