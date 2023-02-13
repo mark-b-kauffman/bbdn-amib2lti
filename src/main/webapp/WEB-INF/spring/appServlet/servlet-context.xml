@@ -49,6 +49,16 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.blackboard.amib2lti" />
+
+  <context:property-placeholder location="classpath*:*.properties"/>
+
+  <beans:bean id="b2Vendor" class="java.lang.String">
+        <beans:constructor-arg value="${b2.vendor}" />
+  </beans:bean>
+
+  <beans:bean id="b2Handle" class="java.lang.String">
+        <beans:constructor-arg value="${b2.handle}" />
+  </beans:bean>
 	
 		
 </beans:beans>

@@ -3,14 +3,16 @@
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://www.blackboard.com/bb-manifest-plugin http://fibbba.medu.com/xsd/bb-manifest-plugin.xsd">
   <plugin>
-
+    <!-- b2.<value> here comes from bundles/bb-manivest-<language>.properties file -->
+    <!-- b2.<value> in the code is from java/b2.properties file. -->
+    <!-- The later are wired in via spring/appServlet/servlet-context.xml -->
     <name value="b2.name" />
     <handle value="amib2lti" />
     <webapp-type value="javaext" />
     <description value="b2.description" />
     <default-locale value="en_US" />
 
-    <version value="2023.02.093" />
+    <version value="2023.02.123" />
     <requires>
       <bbversion value="3900.54.0" />
     </requires>

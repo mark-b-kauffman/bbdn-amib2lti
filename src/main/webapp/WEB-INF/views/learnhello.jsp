@@ -47,6 +47,8 @@
 <P>  INSTANCE_GUID is ${INSTANCE_GUID}. </P>
 <P> The uriStem is ${uriStem}. </P>
 
+<P>  Your b2Vendor-b2Handle is: ${b2Vendor}-${b2Handle}
+
 <P>  Your blackboard.data.user.User.getUserName() is: ${userName}
 <P>  Your blackboard.data.user.User.getBatchUid() is: ${batchUid}
 
