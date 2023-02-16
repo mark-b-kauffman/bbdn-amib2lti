@@ -1,10 +1,9 @@
 A Migrate B2 Content to LTI Building Block
 =====================
+This project is a Work In Progress (WIP). It is intended to be used, eventually, by 3rd-party developers who modify it to work to covert their B2 content items, and items embedded in the Rich Text Editor of a Learn Origial course to native LTI launches to their server. At this time the only functionality is to show a settings page and a link on the Learn Admin page under Tools.
 
-This project is based from the Spring Tool Suite (STS) Spring MVC project. We've added a bb-manifest.xml and an example of a view that uses the Blackboard Tags to render a page that has the look and feel of other Blackboard Learn pages.
+The project is based from the Spring Tool Suite (STS) Spring MVC project. We've added a bb-manifest.xml and an example of a view that uses the Blackboard Tags to render a page that has the look and feel of other Blackboard Learn pages.
 Lastly, we've added code that uses the Logback Java APIs to create log files.
-
-Note: To use the /coursetest action you must have created a course with the courseId mbk-test on your Learn system.
 
 Credit to Shane Argo @ All the Ducks for the b2-logging-utils. Thank you Shane!
 https://github.com/AllTheDucks/b2-logging-utils
