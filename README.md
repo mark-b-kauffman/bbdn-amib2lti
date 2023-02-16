@@ -27,3 +27,9 @@ MODIFY THE SCHEMA NAME (BBLEARN below) TO MATCH THAT OF THE SYSTEM YOU DEPLOY TO
 Home URL Example: `https://<hostname>/webapps/bbdn-amib2lti-BBLEARN/`
 Learn Page URL Example: `https://<hostname>/webapps/bbdn-amib2lti-BBLEARN/learnhello`
 
+### Helpful References
+https://docs.blackboard.com/archive/b2/getting-started/api-overview
+https://docs.blackboard.com/archive/b2/resources/preparing-for-saas-and-new-learn-versions
+https://docs.blackboard.com/archive/b2/getting-started/api-documentation
+https://docs.blackboard.com/archive/b2/opendb/schema-xml
+
