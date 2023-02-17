@@ -12,7 +12,7 @@
     <description value="b2.description" />
     <default-locale value="en_US" />
 
-    <version value="2023.02.163" />
+    <version value="2023.02.172" />
     <requires>
       <bbversion value="3900.54.0" />
     </requires>

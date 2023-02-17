@@ -1,8 +1,7 @@
 buildscript {
     repositories {
-	gradlePluginPortal()
-	mavenCentral()
-        jcenter()
+        gradlePluginPortal()
+        mavenCentral()
     }
 
 
@@ -18,7 +17,7 @@ apply plugin: 'maven-publish'
 
 // define the version for the project when publishing to maven
 group "blackboard.plugin"
-version "2023.02.163-SNAPSHOT"
+version "2023.02.172-SNAPSHOT"
 
 project.ext {
   learnVersion = "3900.54.0"
@@ -137,7 +136,7 @@ task compileJsps(type: JavaCompile) {
   classpath = configurations.tomcat + sourceSets.main.output + sourceSets.main.runtimeClasspath
   sourceCompatibility = '1.8'
   targetCompatibility = '1.8'
-  destinationDir = file("src/main/webapp/WEB-INF/classes")
+  destinationDirectory = file("src/main/webapp/WEB-INF/classes")
   source = file("build/jasper/org/apache/jsp")
   dependsOn classes
   dependsOn tomcatJasper

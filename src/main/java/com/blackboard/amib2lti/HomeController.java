@@ -88,13 +88,14 @@ public class HomeController {
 		logger.error("There was NOT an error. This is a test message.");
 		System.out.println("springmvcb2 - Is this visible in Kibana? I didn't intentionally log it in the correct format.");
 
-//		Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+    // get the URI stem so we can build links to this B2.
+    String uriStem = PlugInUtil.getUriStem(b2Vendor, b2Handle);
+    model.addAttribute("uriStem", uriStem);
 
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 
 		String formattedDate = dateFormat.format(date);
-		String uriStem = PlugInUtil.getUriStem("bbdn", "amib2lti");
 
     model.addAttribute("serverTime", formattedDate );
 		model.addAttribute("uriStem", uriStem);
@@ -109,13 +110,12 @@ public class HomeController {
 		LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
 		StatusPrinter.print(lc);
 
-    model.addAttribute("b2Vendor",b2Vendor);
-    model.addAttribute("b2Handle",b2Handle);
-    
-    // TO DO: Is there a way to do the following just once so every request doesn't need this code?
-    // I tried a private String global but it was an empty string when this ran.
+    // get the URI stem so we can build links to this B2.
     String uriStem = PlugInUtil.getUriStem(b2Vendor, b2Handle);
     model.addAttribute("uriStem", uriStem);
+
+    model.addAttribute("b2Vendor",b2Vendor);
+    model.addAttribute("b2Handle",b2Handle);
 
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -149,6 +149,10 @@ public class HomeController {
 	public String settings(Locale locale, Model model) {
 		// MyLogger.info("Using Learn Logger! The client locale is {}.", locale);
 		logger.info("Welcome to /settings! The client locale is {}.", locale);
+    // get the URI stem so we can build links to this B2.
+    String uriStem = PlugInUtil.getUriStem(b2Vendor, b2Handle);
+    model.addAttribute("uriStem", uriStem);
+
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 
@@ -188,12 +192,14 @@ public class HomeController {
     LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
     StatusPrinter.print(lc);
 
+    // get the URI stem so we can build links to this B2.
+    String uriStem = PlugInUtil.getUriStem(b2Vendor, b2Handle);
+    model.addAttribute("uriStem", uriStem);
+
     Date date = new Date();
     DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 
     String formattedDate = dateFormat.format(date);
-
-    String uriStem = PlugInUtil.getUriStem("bbdn", "amib2lti");
 
     model.addAttribute("uriStem", uriStem);
 
@@ -247,7 +253,7 @@ public class HomeController {
 
     String formattedDate = dateFormat.format(date);
 
-    String uriStem = PlugInUtil.getUriStem("bbdn", "amib2lti");
+    String uriStem = PlugInUtil.getUriStem(b2Vendor, b2Handle);
 
     model.addAttribute("uriStem", uriStem);
 
