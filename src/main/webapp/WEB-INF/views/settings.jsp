@@ -24,7 +24,7 @@
 			<br />
 			<span id="mig2" style="<%= true ? "" : "display: none;"%> font-size: 110%; font-weight: bold; color: inherit; font-family: inherit; font-style: normal;">MIG2.</span>
 			<br />
-			<a id="mig3" style="<%= true ? "" : "display: none;"%>" href="javascript:migrate();"> Finalize migration process.</a><span id="progressMark" style="display: none; color: gray; font-weight:bold; padding-left: 5px; text-decoration: blink;"></span>
+			<a id="mig3" style="<%= true ? "" : "display: none;"%>" href="/learnhello"> Finalize migration process.</a>
 		</bbUI:caret>
 
 	</bbUI:caretList>

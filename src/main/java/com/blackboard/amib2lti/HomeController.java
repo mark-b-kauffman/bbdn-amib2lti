@@ -111,6 +111,11 @@ public class HomeController {
 
     model.addAttribute("b2Vendor",b2Vendor);
     model.addAttribute("b2Handle",b2Handle);
+    
+    // TO DO: Is there a way to do the following just once so every request doesn't need this code?
+    // I tried a private String global but it was an empty string when this ran.
+    String uriStem = PlugInUtil.getUriStem(b2Vendor, b2Handle);
+    model.addAttribute("uriStem", uriStem);
 
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -126,10 +131,6 @@ public class HomeController {
     model.addAttribute("batchUid",userBatchUid);
     model.addAttribute("userName",userName);
 
-    String uriStem = PlugInUtil.getUriStem("bbdn", "amib2lti");
-
-		model.addAttribute("uriStem", uriStem);
-
     // WARNING: GeneralUtil is an unpublished Class.
     // Blackboard in no way recommends or supports it's use for any purpose.
     // Use at your own risk. It may change at any time.
@@ -144,10 +145,10 @@ public class HomeController {
 		return "learnhello";
 	}
 
-  @RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public String admin(Locale locale, Model model) {
+  @RequestMapping(value = "/settings", method = RequestMethod.GET)
+	public String settings(Locale locale, Model model) {
 		// MyLogger.info("Using Learn Logger! The client locale is {}.", locale);
-		logger.info("Welcome to /admin! The client locale is {}.", locale);
+		logger.info("Welcome to /settings! The client locale is {}.", locale);
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 
@@ -159,7 +160,7 @@ public class HomeController {
     MybbLOGGER.getBbLogger().logError(formattedDate + "  Error from logbacklog, not a real Error" );
     MybbLOGGER.getBbLogger().logDebug(formattedDate + "  Debug from logbacklog" );
 
-		return "admin";
+		return "settings";
 	}
 
   @RequestMapping(value = "/logbacklog", method = RequestMethod.GET)

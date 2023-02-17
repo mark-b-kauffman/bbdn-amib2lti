@@ -12,7 +12,7 @@
     <description value="b2.description" />
     <default-locale value="en_US" />
 
-    <version value="2023.02.123" />
+    <version value="2023.02.163" />
     <requires>
       <bbversion value="3900.54.0" />
     </requires>
@@ -25,7 +25,7 @@
     </vendor>
 
       <http-actions>
-              <config value="admin"/>
+              <config value="settings"/>
       </http-actions>
 
       <!-- NO Custom content types defined by this extension -->

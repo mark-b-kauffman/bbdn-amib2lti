@@ -47,10 +47,12 @@
 <P>  INSTANCE_GUID is ${INSTANCE_GUID}. </P>
 <P> The uriStem is ${uriStem}. </P>
 
-<P>  Your b2Vendor-b2Handle is: ${b2Vendor}-${b2Handle}
+<P>  Your b2Vendor-b2Handle is: ${b2Vendor}-${b2Handle} </P>
 
-<P>  Your blackboard.data.user.User.getUserName() is: ${userName}
-<P>  Your blackboard.data.user.User.getBatchUid() is: ${batchUid}
+<P>  Your uriStem is: ${uriStem} </P>
+
+<P>  Your blackboard.data.user.User.getUserName() is: ${userName} </P>
+<P>  Your blackboard.data.user.User.getBatchUid() is: ${batchUid} </P>
 
 </body>
 </html>
