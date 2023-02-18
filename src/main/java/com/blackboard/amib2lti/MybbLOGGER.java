@@ -32,6 +32,10 @@ package com.blackboard.amib2lti;
 // the code does with the first. The reason for this is that is so that we can follow the logic this class uses to create and log to 
 // a file using the Learn Log and LogService classes.
 
+// 2023.02 - mbk It no longer seems possible to log to the logs/custom directory for a 3rd-party B2.
+// Hence I'm commenting out the lines that log their. The logback code is logging to the logs/plugins 
+// directory just fine.
+
 import blackboard.platform.log.Log;
 import blackboard.platform.log.LogService;
 import blackboard.platform.log.LogService.Verbosity;
@@ -51,7 +55,7 @@ public class MybbLOGGER
 {
   
   /* The following loggers, custom and plugin, are defined in the logback.xml file. */
-  private static final Logger customLogback = LoggerFactory.getLogger("custom");
+  // private static final Logger customLogback = LoggerFactory.getLogger("custom");
   private static final Logger pluginLogback = LoggerFactory.getLogger(MybbLOGGER.class);
   
   /* We no longer use Learn's Logging APIs so we delete all of this
@@ -107,7 +111,7 @@ public class MybbLOGGER
       else
           logLevelString=getLoglevel();
           
-      customLogback.info("Enter logError() - logLevelString:"+logLevelString);
+      // customLogback.info("Enter logError() - logLevelString:"+logLevelString);
  
       
       if ((getLoglevel() == null) || ("ALL".equalsIgnoreCase(getLoglevel())) || ("ERROR".equalsIgnoreCase(getLoglevel())) || ("DEBUG".equalsIgnoreCase(getLoglevel())) || ("WARN".equalsIgnoreCase(getLoglevel())) || ("INFO".equalsIgnoreCase(getLoglevel()))) {
@@ -115,174 +119,28 @@ public class MybbLOGGER
           pluginLogback.error(logMessage);
           // No longer needed! logMessage(logMessage, LogService.Verbosity.ERROR);
       }
-      customLogback.info("Exit logError()");
+      // customLogback.info("Exit logError()");
 
   }
   
   public void logInfo(String logMessage)
   {
-      customLogback.info("Enter logInfo()");
+      // customLogback.info("Enter logInfo()");
       if ((getLoglevel() == null) || ("ALL".equalsIgnoreCase(getLoglevel())) || ("DEBUG".equalsIgnoreCase(getLoglevel())) || ("INFO".equalsIgnoreCase(getLoglevel()))) {
         pluginLogback.info(logMessage);
         // No longer needed! logMessage(logMessage, LogService.Verbosity.INFORMATION);
       }
-      customLogback.info("Exit logInfo()");
+      // customLogback.info("Exit logInfo()");
   }
   
   public void logDebug(String logMessage)
   {
-      customLogback.info("Enter logDebug()");
+      // customLogback.info("Enter logDebug()");
       if ((getLoglevel() == null) || ("ALL".equalsIgnoreCase(getLoglevel())) || ("DEBUG".equalsIgnoreCase(getLoglevel()))) {
         pluginLogback.debug(logMessage);
         // No longer needed! logMessage(logMessage, LogService.Verbosity.DEBUG);
       }
-      customLogback.info("Exit logDebug()");
+      // customLogback.info("Exit logDebug()");
   }
  
-  
-  /* None of this is needed any more because we are using the Logback loggers.
-  private void logMessage(String logMessage, LogService.Verbosity logLevel)
-  {
-    customLogback.info("Enter logMessage(). this.logName:" + this.logName);
-    String B2LOGlogFileName = "";   
-    String pluginLogFile = this.pluginLogPath + File.separator + this.logName; 
-    
-    
-    customLogback.info("In logMessage. Set pluginLogFile="+pluginLogFile);
-    
-    if (B2LOG != null)
-        B2LOGlogFileName = B2LOG.getLogFileName();
-    else
-        customLogback.info("B2LOG was NULL.");
-    
-    customLogback.info("In logMessage. B2LOG.getLogFileName():"+ B2LOGlogFileName +  " pluginLogFile:"+pluginLogFile);
-   
-    if ((B2LOG == null) || ((pluginLogPath != "") && (!B2LOGlogFileName.equalsIgnoreCase(pluginLogFile)))) // added || back for 1.6.0
-    {
-        customLogback.info("logMessage calling createLogFile()");
-        createLogFile();
-        customLogback.info("logMessage back from createLogFile()");
-        B2LOG = LOGSERVICE.getConfiguredLog(this.logName);
-    }
-    customLogback.info("logMessage calling Log.log()");
-    B2LOG.log(logMessage, logLevel);
-    customLogback.info("Exit logMessage()");
-  }
-  
-  private void createLogFile()
-  {
-    customLogback.info("Enter createLogFile()");
-    try
-    {
-      customLogback.info("createLogFile calling PlugInUtil.getLogDirectory");
-      this.logsDirectory = PlugInUtil.getLogDirectory("bbdn", "amib2lti");   // this.logsDirectory.toString() == this.pluginLogPath??
-      customLogback.info("createLogFile this.logsDirectory String Value:" + this.logsDirectory.toString());
-      if (!this.logsDirectory.isDirectory()) {
-        customLogback.info("createLogFile this.logsDirectory.isDirectory was FALSE");
-        customLogback.info("createLogFile calling this.logsDirectory.mkdir()"); 
-        this.logsDirectory.mkdir();
-      } else {
-        // Nothing here... no more cleanUpLogFiles();
-      }
-      // 1.5.7 used defineNewFileLog only.  1.5.8+ will use both new File( and defineNewFileLog
-      customLogback.info("createLogFile calling() new File("+ this.logsDirectory + File.separator + this.logName); // 1.6.0 will be using File.separator
-      File logsFile = new File(this.logsDirectory + File.separator + this.logName);
-
-      customLogback.info("createLogFile() calling LogService.defineNewFileLog with logName:" + this.logName + " and logFilePath:" +logsFile.toString());
-      LOGSERVICE.defineNewFileLog(this.logName, logsFile.toString(), LogService.Verbosity.DEBUG, false);
-      
-      // The logFilePath parameter is the full path to the log file, not just the path. 1.5.7 code follows
-      // String fullPathToLog = this.logsDirectory.getAbsolutePath()+ "/" +this.logName;
-      // customLogback.info("createLogFile() calling LogService.defineNewFileLog with logName:" +this.logName + " and fullPathToLog:"+ fullPathToLog );
-      // LOGSERVICE.defineNewFileLog(this.logName, fullPathToLog, LogService.Verbosity.DEBUG, false);
-    }
-    catch (Exception e)
-    {
-      customLogback.info("createLofFile() CAUGHT EXCEPTION");
-      e.printStackTrace();
-      if (e.getLocalizedMessage() != null)
-        customLogback.info(e.getLocalizedMessage());
-      else
-        customLogback.info("createMessage() e.localizedMessage was null");
-    }
-  }
-  
-  */
-  
-  /* Ignore the following. It has nothing to do with the Log/LogService rolling log issue.
-  The entire cleanUpLogfiles() usage was removed by Ellucian.
-  private void cleanUpLogFiles()
-  {
-    int maxLogLimit = 5;
-    DcbbUtil dcbbUtil = new DcbbUtil();
-    String ml = dcbbUtil.getResourceString("application.log.limit");
-    try
-    {
-      maxLogLimit = Integer.parseInt(ml);
-    }
-    catch (NumberFormatException e) {}
-    Map<Long, File> logFileMap;
-    int numFiles;
-    if (this.logsDirectory != null)
-    {
-      File[] listOfFiles = this.logsDirectory.listFiles();
-      logFileMap = new TreeMap();
-      
-      numFiles = listOfFiles.length;
-      if (listOfFiles.length <= maxLogLimit + 1) {
-        return;
-      }
-      for (int i = 0; i < listOfFiles.length; i++) {
-        if (listOfFiles[i].isFile())
-        {
-          String filename = listOfFiles[i].getName();
-          if (!filename.contains("ILPLog"))
-          {
-            listOfFiles[i].delete();
-            numFiles--;
-          }
-          else
-          {
-            String dateStr = "";
-            try
-            {
-              dateStr = filename.replace("ILPLog.", "").replace(".txt", "");
-            }
-            catch (Exception e) {}
-            if (dateStr.equals(""))
-            {
-              numFiles--;
-            }
-            else
-            {
-              Long logDateTime = null;Date logDate = null;
-              try
-              {
-                logDate = DcbbUtil.parseDate(dateStr, "yyyy-MM-dd", false);
-              }
-              catch (Exception e) {}
-              if (logDate == null)
-              {
-                numFiles--;
-              }
-              else
-              {
-                logDateTime = Long.valueOf(logDate.getTime());
-                
-                logFileMap.put(logDateTime, listOfFiles[i]);
-              }
-            }
-          }
-        }
-      }
-      for (Long logTime : logFileMap.keySet())
-      {
-        ((File)logFileMap.get(logTime)).delete();
-        numFiles--;
-        if (numFiles <= maxLogLimit) {
-          break;
-        }
-      }
-    }
-  } */
 } //public class MybbLOGGER

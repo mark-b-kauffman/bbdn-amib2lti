@@ -17,7 +17,7 @@ apply plugin: 'maven-publish'
 
 // define the version for the project when publishing to maven
 group "blackboard.plugin"
-version "2023.02.172-SNAPSHOT"
+version "2023.02.176-SNAPSHOT"
 
 project.ext {
   learnVersion = "3900.54.0"
@@ -34,15 +34,15 @@ def logbackVersion      = '1.0.13'
 def logbackClassic      = "ch.qos.logback:logback-classic:${logbackVersion}"
 def logbackCore         =  "ch.qos.logback:logback-core:${logbackVersion}"
 
-def slf4jVersion = '1.6.6'
-def slf4jAPI     = "org.slf4j:slf4j-api:${slf4jVersion}"
-def slf4jJCL     = "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
+//def slf4jVersion = '1.6.6'
+//def slf4jAPI     = "org.slf4j:slf4j-api:${slf4jVersion}"
+//def slf4jJCL     = "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
 // mbk - We no longer user slf4jLog4J. References have been commented out.
 // We're using logback. Having both in here caused a multiple bindings warning.
 // On Learn 3000. and earlier the logback logger was choosen by the runtime.
 // But on 3100 and later it wasn't and we didn't get in a logs, because
 // this code does all logging using logback!
-def slf4jLog4J   = "org.slf4j:slf4j-log4j12:${slf4jVersion}"
+//def slf4jLog4J   = "org.slf4j:slf4j-log4j12:${slf4jVersion}"
 
 repositories {
 
@@ -94,8 +94,8 @@ exclude(module: 'commons-logging')
     implementation(logbackClassic)
     implementation(logbackCore)
 
-    implementation(slf4jAPI)
-    implementation(slf4jJCL)
+    //implementation(slf4jAPI)
+    //implementation(slf4jJCL)
     // implementation(slf4jLog4J)
 
     implementation group: 'org.springframework', name: 'spring-webmvc', version:'5.3.25'

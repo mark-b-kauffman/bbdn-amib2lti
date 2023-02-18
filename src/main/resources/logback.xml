@@ -18,8 +18,8 @@
             <pattern>%date{yyyy-MM-dd HH:mm:ss} | %-5level | %-45(%L:%logger{40}) | %m%n%ex{10}</pattern>
         </encoder>
     </appender>
-    <!-- The following 2 loggers use the above appender -->
-    <logger name="org.springframework" additivity="false">
+    <!-- CANT WRITE TO logs/custom so no longer use the following 2 loggers use the above appender -->
+    <!-- logger name="org.springframework" additivity="false">
         <level value="error" />
         <appender-ref ref="CUSTOMFILE" />
     </logger>
@@ -28,7 +28,7 @@
     <logger name="custom" additivity="false">
 		<level value="info" />
 		<appender-ref ref="CUSTOMFILE" />
-    </logger>
+    </logger -->
       
     <!-- The following is to log to the log directory returned by Learn's PluginUtils.getLogDirectory -->
     <!-- The vendorId and handle are hard-coded here.... -->
@@ -65,7 +65,7 @@
 
   
     <root level="ALL">
-        <appender-ref ref="CUSTOMFILE" />
+        <appender-ref ref="PLUGIN" />
     </root>
 
 </configuration>
