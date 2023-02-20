@@ -12,7 +12,7 @@
     <description value="b2.description" />
     <default-locale value="en_US" />
 
-    <version value="2023.02.176" />
+    <version value="2023.02.204" />
     <requires>
       <bbversion value="3900.54.0" />
     </requires>
@@ -96,6 +96,7 @@
       <permission type="java.lang.RuntimePermission" name="accessDeclaredMembers" />
       <permission type="java.lang.RuntimePermission" name="createClassLoader" />
       <permission type="java.lang.RuntimePermission" name="setContextClassLoader" />
+      <permission type="java.lang.RuntimePermission" name="getenv.*" />  
 
       <!-- File Permissions -->
       <permission type="java.io.FilePermission" name="${java.home}/-" actions="read"/>

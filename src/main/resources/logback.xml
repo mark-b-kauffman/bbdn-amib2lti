@@ -1,24 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
  
-    <!-- The following is to log to the logs/custom directory.  -->
+    <!-- The following is to log to the log directory returned by Learn's PluginUtils.getLogDirectory -->
+    <!-- The vendorId and handle are hard-coded here.... -->
+    <define name="pluginLogDir" class="com.alltheducks.logging.logback.BbPluginLogDirPropertyDefiner">
+        <vendorId>bbdn</vendorId>
+        <handle>amib2lti</handle>
+    </define>
+
+
+    <!-- The following was to log to the logs/custom directory. But we don't have permission. -->
+    <!-- Is that because ../../../logs/custom is not the correct path or something else?      -->
+    <!-- It worked back in the day. In any case this custom log was used to log issues about  
+        the following pluginDir logging code. Given works we will comment this out for now.   -->
+
     <appender name="CUSTOMFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
 
-        <file>../../../logs/custom/amib2lti.logback.log</file>
+        <file>${pluginLogDir}/bbdn-amib2lti-custom.log</file>
 
         <append>true</append>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!-- daily rollover -->
-            <fileNamePattern>../../../logs/custom/amib2lti.%d{yyyy-MM-dd}.log</fileNamePattern>
+
+            <fileNamePattern>${pluginLogDir}/bbdn-amib2lti-custom.%d{yyyy-MM-dd}.log</fileNamePattern>
       
-            <!-- keep 10 days' worth of history -->
+
             <maxHistory>10</maxHistory>
         </rollingPolicy>
         <encoder>
             <pattern>%date{yyyy-MM-dd HH:mm:ss} | %-5level | %-45(%L:%logger{40}) | %m%n%ex{10}</pattern>
         </encoder>
     </appender>
-    <!-- CANT WRITE TO logs/custom so no longer use the following 2 loggers use the above appender -->
+
+    <!-- Only write to custom when debugging logging so no longer use the following 2 loggers use the above appender -->
     <!-- logger name="org.springframework" additivity="false">
         <level value="error" />
         <appender-ref ref="CUSTOMFILE" />
@@ -30,12 +43,7 @@
 		<appender-ref ref="CUSTOMFILE" />
     </logger -->
       
-    <!-- The following is to log to the log directory returned by Learn's PluginUtils.getLogDirectory -->
-    <!-- The vendorId and handle are hard-coded here.... -->
-    <define name="pluginLogDir" class="com.alltheducks.logging.logback.BbPluginLogDirPropertyDefiner">
-        <vendorId>bbdn</vendorId>
-        <handle>amib2lti</handle>
-    </define>
+
 
     <appender name="PLUGIN" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${pluginLogDir}/bbdn-amib2lti.log</file>
