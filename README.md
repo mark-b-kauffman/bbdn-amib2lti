@@ -27,12 +27,10 @@ Home URL Example: `https://<hostname>/webapps/bbdn-amib2lti-BBLEARN/`
 Learn Page URL Example: `https://<hostname>/webapps/bbdn-amib2lti-BBLEARN/learnhello`
 
 ### Helpful Resources
-https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/macos-install.html
-
-brew install gradle@7
-
-https://docs.blackboard.com/archive/b2/getting-started/api-overview
-https://docs.blackboard.com/archive/b2/resources/preparing-for-saas-and-new-learn-versions
-https://docs.blackboard.com/archive/b2/getting-started/api-documentation
-https://docs.blackboard.com/archive/b2/opendb/schema-xml
+- https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/macos-install.html
+- brew install gradle@7
+- https://docs.blackboard.com/archive/b2/getting-started/api-overview
+- https://docs.blackboard.com/archive/b2/resources/preparing-for-saas-and-new-learn-versions
+- https://docs.blackboard.com/archive/b2/getting-started/api-documentation
+- https://docs.blackboard.com/archive/b2/opendb/schema-xml
 
