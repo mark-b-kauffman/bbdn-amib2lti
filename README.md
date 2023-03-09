@@ -29,9 +29,9 @@ Learn Page URL Example: `https://<hostname>/webapps/bbdn-amib2lti-BBLEARN/learnh
 ### Helpful Resources NOTE: All of the prior /archive docs are gone.
 - https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/macos-install.html
 - brew install gradle@7
-- [B2 API Overview] (https://github.com/blackboard/blackboard.github.io/blob/Backup/learn/B2s/Building%20Blocks%20API%20Overview.md)
-- [Make Your B2 SaaS and Newer Learn Version Compatible] (https://github.com/blackboard/blackboard.github.io/blob/Backup/learn/B2s/Preparing%20Your%20Building%20Blocks%20For%20Learn%20SaaS%20and%20Newer%20Learn%20Versions.md)
-- [B2 API Documentation] (https://github.com/blackboard/blackboard.github.io/blob/Backup/learn/B2s/Building%20Block%20API%20Documentation.md)
-- [Schema.xml Tutorial] (https://github.com/blackboard/blackboard.github.io/blob/Backup/learn/B2s/Tutorial%20-%20Schema%20XML.md)
-- [All B2 Docs] (https://github.com/blackboard/blackboard.github.io/blob/Backup/learn/B2s/Tutorial%20-%20Schema%20XML.md)
+- [B2 API Overview](https://github.com/blackboard/blackboard.github.io/blob/Backup/learn/B2s/Building%20Blocks%20API%20Overview.md)
+- [Make Your B2 SaaS and Newer Learn Version Compatible](https://github.com/blackboard/blackboard.github.io/blob/Backup/learn/B2s/Preparing%20Your%20Building%20Blocks%20For%20Learn%20SaaS%20and%20Newer%20Learn%20Versions.md)
+- [B2 API Documentation](https://github.com/blackboard/blackboard.github.io/blob/Backup/learn/B2s/Building%20Block%20API%20Documentation.md)
+- [Schema.xml Tutorial](https://github.com/blackboard/blackboard.github.io/blob/Backup/learn/B2s/Tutorial%20-%20Schema%20XML.md)
+- [All B2 Docs](https://github.com/blackboard/blackboard.github.io/blob/Backup/learn/B2s/Tutorial%20-%20Schema%20XML.md)
 
